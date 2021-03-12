@@ -2,23 +2,28 @@ import random
 myList = []
 
 def mainProgram():
+    print("Hello, there! Let's work with lists!")
     while True:
-        print("Hello, there! Let's work with lists!")
-        print("Choose one of the following options. Type a number only!")
-        choice = input("""1. Add to list,
+        try:
+            print("Choose one of the following options. Type a number only!")
+            choice = input("""1. Add to list,
 2. Return the value of an index position
-3. End program
-4.Random Search""")
-        if choice == "1":
-            addToList()
-        elif choice == "2":
-            indexValues
-        elif choice == "3":
-            break
-        elif choice == "4":
-            randomSearch
-
-
+3. Random Search
+4. End program
+""")
+            if choice == "1":
+                addToList()
+            elif choice == "2":
+                indexValues()
+            elif choice == "3":
+                randomSearch()
+            else:
+                break
+        except:
+            print("""hehe hoohoo that wasn't clever
+Restarting""")
+                
+            
 def addToList():
     newItem = input("Please type an integer.")
     myList.append(int(newItem))
