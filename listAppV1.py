@@ -1,5 +1,6 @@
 import random
 myList = []
+unique_list = []
 
 def mainProgram():
     print("Hello, there! Let's work with lists!")
@@ -10,9 +11,10 @@ def mainProgram():
 2. Return the value of an index position
 3. Random Search
 4. Add a bunch of numbers
-5. Print contents of list
+5. Sort your list
 6. Do a linear search
-7. End program
+7. Print Lists
+8. End program
 """)
             if choice == "1":
                 addToList()
@@ -23,9 +25,12 @@ def mainProgram():
             elif choice == "4":
                 addABunch()
             elif choice == "5":
-                print(myList)
+                sortList(myList)
             elif choice == "6":
                 linearSearch()
+            elif choice == "7":
+                printLists()
+            
                 
             else:
                 break
@@ -65,6 +70,25 @@ def linearSearch():
             amountOfTimes = amountOfTimes + 1
             print("your item is at index {}".format(x))
     print("Your item is in the list", amountOfTimes,"times")
+
+def sortList(myList):
+    for x in myList:
+        if x not in unique_list:
+            unique_list.append(x)
+    unique_list.sort()
+    showMe = input("wanna see your new list Y/N")
+    if showMe.lower() == "y":
+        print(unique_list)
+
+def printLists():
+    if len(unique_list) == 0:
+        print(myList)
+    else:
+        whichOne = input("Which list? Sorted or un-sorted")
+        if whichOne.lower() == "sorted":
+            print(unique_list)
+        else:
+            print(myList)
 
             
 
