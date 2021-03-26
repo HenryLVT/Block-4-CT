@@ -31,6 +31,7 @@ def mainProgram():
             elif choice == "7":
                 printLists()
             
+            
                 
             else:
                 break
@@ -71,6 +72,19 @@ def linearSearch():
             print("your item is at index {}".format(x))
     print("Your item is in the list", amountOfTimes,"times")
 
+def recursiveBinarySearch(unique_list, low, high, x):
+    if high >= low :
+        mid = high + low //2
+
+        if unique_list[mid] == x :
+            print("Oh what luck your number is at position{}".format(mid))
+        elif unique_list[mid] > x:
+            return recursiveBinarySearch(unique_list, low , mid -1, x)
+        else:
+            return recusiveBinarySearch(unique_list, mid + 1, high, x) 
+    else:
+        print("Your number isnt here")
+
 def sortList(myList):
     for x in myList:
         if x not in unique_list:
@@ -89,7 +103,6 @@ def printLists():
             print(unique_list)
         else:
             print(myList)
-
             
 
 if __name__ == "__main__":
