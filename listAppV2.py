@@ -7,7 +7,7 @@ lengthIterative = 32
 def mainProgram():
     print("Hello, there! Let's work with lists!")
     while True:
-        #try:
+        try:
             print("Choose one of the following options. Type a number only!")
             choice = input("""1. Add to list,
 2. Return the value of an index position
@@ -29,21 +29,26 @@ def mainProgram():
             elif choice == "4":
                 addABunch()
             elif choice == "5":
-                sortList(myList)
+                sortListAsk(myList)
             elif choice == "6":
                 linearSearch()
             elif choice == "7":
                 binSearch = input("What number are you looking for?   ")
+                sortList(myList)
                 recursiveBinarySearch(unique_list, 0, len(unique_list)-1, int(binSearch))
             elif choice == "8":
-                
+                startIterative = time.time()
+                sortList(myList)
                 binSearch = input("What number are you looking for?   ")
                 result = iterativeBinarySearch(unique_list, int(binSearch))
                 if result != -1 :
+                    endIterative = time.time()
+                    lengthIterative = endIterative - startIterative
                     print("Your number is at index position {}".format(result))
                     print("Your search took {} seconds".format(lengthIterative))
                 else:
                     endIterative = time.time()
+                    lengthIterative = endIterative - startIterative
                     print("Your number isn't here")
                     print("Your search took {} seconds".format(lengthIterative))
             elif choice == "9":
@@ -52,11 +57,14 @@ def mainProgram():
             else:
                 break
 
-        #except:
+        except:
 
-           #print("""Hehe hoohoo that wasn't clever
-#Restarting...""")
-
+           print("""Hehe hoohoo that wasn't clever
+Restarting...""")
+"""
+addABunch()
+asks you how many integers you would like to add to a list and how high they go
+then randomly generates in accordance with those inputs"""
                 
 def addABunch():
     startAdding = time.time()
@@ -68,21 +76,32 @@ def addABunch():
     endAdding = time.time()
     print("Your list is now complete")
     print("Your addition took {} seconds to complete".format(endAdding - startAdding))
+"""
+addToList()
+asks you what value you want to add to your list then appends it in"""
            
 def addToList():
     newItem = input("Please type an integer.")
     myList.append(int(newItem))
     print(myList)
+"""
+pulls a random value in the length of your list and tells you the integer at that index position"""
 
 def randomSearch():
     print("Here's a random value from your list")
     print(myList[random.randint(0,len(myList)-1)])
     
-
+"""
+indexVaules()
+asks you which index position you want to look at and then tells you what is at that position"""
 
 def indexValues():
     indexPos = input("Where would you like to look")
     print(myList[int(indexPos)])
+
+"""
+linearSearch() asks you what value you want to look for in your list then goes throught the list one position at a time and compares the value its on to the value
+you're looking for then if you find the value it stops and returns which index position its at"""
 
 def linearSearch():
     print("We're going to search through the list in the worst way possible")
@@ -93,6 +112,10 @@ def linearSearch():
             amountOfTimes = amountOfTimes + 1
             print("your item is at index {}".format(x))
     print("Your item is in the list", amountOfTimes,"times")
+
+"""
+recursiveBinarySearch() asks you what number you're looking for then splits the sorted list in half if the value is less then the middle it looks at the first half of the list
+if its greater then it looks in the second half of the list it then does the same proccess working closer and closer to the value """
 
 def recursiveBinarySearch(unique_list, low, high, x):
     startRecursive = time.time()
@@ -114,8 +137,10 @@ def recursiveBinarySearch(unique_list, low, high, x):
         print("Your number isn't here")
         endRecursive = time.time()
         print("Your search took {} seconds".format(endRecursive - startRecursive))
-
-def sortList(myList):
+"""
+sortList() goes through your main list starting from 0 and checks if the value its on is in your list it adds it to your new sorted list this way it will be
+sorted starting at 0 then asks you if you want to see your new sorted list if yes it prints it if no it doesnt print it"""
+def sortListAsk(myList):
     for x in myList:
         if x not in unique_list:
             unique_list.append(x)
@@ -123,7 +148,16 @@ def sortList(myList):
     showMe = input("wanna see your new list Y/N")
     if showMe.lower() == "y":
         print(unique_list)
-
+""" the same sorting function as above without the asking part"""
+def sortList(myList):
+    for x in myList:
+        if x not in unique_list:
+            unique_list.append(x)
+    unique_list.sort()
+        
+"""
+printLists() checks if you have created a sorted list if yes it asks you which list you would like to see if no it will just print your regular list, doesnt actually
+check to see if you replied with un-sorted just checks if you said sorted and anything other then sorted"""
 def printLists():
     if len(unique_list) == 0:
         print(myList)
@@ -133,26 +167,23 @@ def printLists():
             print(unique_list)
         else:
             print(myList)
-
+"""
+iterativeBinarySearch() the iterative search will split your list into two pieces then determine which half the value youre looking for is in it will keep on doing this till it finds your value"""
 def iterativeBinarySearch(unique_list, x):
-    #startIterative =  time.time()
+    startIterative =  time.time()
     
     low = 0
     high = len(unique_list) - 1
     mid = 0
-    print("this happened")
     while low <= high:
         mid = (high + low) //2
-        print("this two")
 
         if unique_list[mid] < x:
             low = mid + 1
             lengthIterative = endIterative - startIterative
-            print(" this one")
 
         elif unique_list[mid] > x:
             high = mid -1
-            print(" this thing happened")
             lengthIterative = endIterative - startIterative
 
         else:
