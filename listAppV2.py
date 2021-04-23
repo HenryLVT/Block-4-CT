@@ -3,7 +3,8 @@ import time
 myList = []
 unique_list = []
 lengthIterative = 32
-
+NewSorted = []
+                  
 def mainProgram():
     print("Hello, there! Let's work with lists!")
     while True:
@@ -18,7 +19,9 @@ def mainProgram():
 7. Recursive binary search
 8. Iterative binary search
 9. Print Lists
-10. End program
+10. Make a new sorted List
+11. Exit Program
+
 """)
             if choice == "1":
                 addToList()
@@ -51,6 +54,8 @@ def mainProgram():
                     lengthIterative = endIterative - startIterative
                     print("Your number isn't here")
                     print("Your search took {} seconds".format(lengthIterative))
+            elif choice == "10":
+                newSortedList()
             elif choice == "9":
                 printLists()
             
@@ -92,7 +97,7 @@ def randomSearch():
     print(myList[random.randint(0,len(myList)-1)])
     
 """
-indexVaules()
+indexValues()
 asks you which index position you want to look at and then tells you what is at that position"""
 
 def indexValues():
@@ -144,7 +149,7 @@ def sortListAsk(myList):
     for x in myList:
         if x not in unique_list:
             unique_list.append(x)
-    unique_list.sort()
+        unique_list.sort()
     showMe = input("wanna see your new list Y/N")
     if showMe.lower() == "y":
         print(unique_list)
@@ -192,5 +197,16 @@ def iterativeBinarySearch(unique_list, x):
     return -1
     endIterative = time.time()
     lengthIterative = endIterative - startIterative
+""" makes a new list very similiar to the addABunch() function but then sorts the new list"""
+def newSortedList():
+    newToAdd = input("how many numbers do you want to add?")
+    newRange = input("how high do you want them to go?")
+    for x  in range (0,int(newToAdd)):
+        NewSorted.append(random.randint(0, int(newRange)))
+    NewSorted.sort()
+    
+    print(NewSorted)
+        
+    
 if __name__ == "__main__":
     mainProgram()
